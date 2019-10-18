@@ -26,56 +26,56 @@ mkdir webpack-react-project && cd webpack-react-project
 
 - 初始化项目，生成package.json文件
 
-  ```javascript
-  npm init -y
-  ```
+```javascript
+npm init -y
+```
 
-  -y：package.json中的配置选项采用默认值
+​		-y：package.json中的配置选项采用默认值
 
-  或
+​		或
 
-  ```
-  npm init 
-  ```
+```
+npm init 
+```
 
-  根据提示设置对应配置的取值（回车时默认配置为默认值）
+根据提示设置对应配置的取值（回车时默认配置为默认值）
 
 - 局部安装webpack到开发环境
 
-  ```javascript
-  npm install --save-dev webpack
-  npm install --save-dev webpack-cli
-  ```
+```
+npm install --save-dev webpack
+npm install --save-dev webpack-cli
+```
 
-   前者是webpack的核心库，后者是分离出来的webpack命令行功能，我们需要使用webpack-cli来进行项目的打包等操作 
+ 		前者是webpack的核心库，后者是分离出来的webpack命令行功能，我们需要使用webpack-cli来进行项目的打包等操作 
 
-  备注：--save-dev是开发环境所需要的依赖包，--save是上线所需的依赖包
+​		备注：--save-dev是开发环境所需要的依赖包，--save是上线所需的依赖包
 
 - 新建webpack.config.js，配置打包入口及出口
 
   使用以下命令创建该文件或者直接创建该文件均可
 
-  ```javascript
-  touch webpack.config.js
-  ```
+```javascript
+touch webpack.config.js
+```
 
-  文件内容如下：
+文件内容如下：
 
-  ```javascript
-  const path = require('path');
-  
-  module.exports = {
-      // 入口文件
-      entry: {
-          app: './src/index.js'
-      },
-      // 输出到dist文件夹, 文件名字为bundle.js
-      output: {
-          filename: 'bundle.js',
-          path: path.resolve(__dirname,'./dist')
-      }
-  }
-  ```
+```javascript
+const path = require('path');
+
+module.exports = {
+    // 入口文件
+    entry: {
+        app: './src/index.js'
+    },
+    // 输出到dist文件夹, 文件名字为bundle.js
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname,'./dist')
+    }
+}
+```
 
 - 在根目录下创建src目录，在该目录下创建index.js文件
 
@@ -125,25 +125,25 @@ npm run build
 
 - 在dist目录下新建index.html文件
 
-  ```html
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <title>Title</title>
-  </head>
-  <body>
-      <div id="root"></div>
-      <script src="bundle.js"></script>
-  </body>
-  </html>
-  ```
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+</body>
+</html>
+```
 
-  
+
 
 - 使用浏览器打开index.html文件，窗口弹出"hello world"
 
-  ![1571311692727](C:\Users\snail\AppData\Roaming\Typora\typora-user-images\1571311692727.png)
+  ![1571311692727](images/1571311692727.png)
 
   
 
@@ -247,11 +247,11 @@ npm run build
 
 ​		显示编译失败，报错如下
 
-![1571314657934](C:\Users\snail\AppData\Roaming\Typora\typora-user-images\1571314657934.png)
+![1571314657934](images/1571314657934.png)
 
 ​		根据提示信息，可以看出出错是由于babel-loader版本和babel-core版本不兼容造成的，通过查看package.json文件，可以看到我们当前安装的这两个依赖包的版本。
 
-![1571314865713](C:\Users\snail\AppData\Roaming\Typora\typora-user-images\1571314865713.png)
+![1571314865713](images/1571314865713.png)
 
 ​		这个问题可以通过提升babel-core版本至7.x或者降低babel-loader版本至7.x来解决。这里我采用了降低babel-loader版本。
 
@@ -266,7 +266,7 @@ npm install babel-loader@7 --save
 
 - 重新执行npm run build进行代码编译，编译成功
 
-![1571315728704](C:\Users\snail\AppData\Roaming\Typora\typora-user-images\1571315728704.png)
+![1571315728704](images/1571315728704.png)
 
 ​		编译提示信息有个警告，建议我们配置一下开发模式，对webpack.config.js文件进行如下调整：
 
@@ -299,7 +299,7 @@ module.exports = {
 
 - 重新npm run build，然后使用浏览器打开dist目录下的index.html文件，浏览器显示：
 
-![1571363939063](C:\Users\snail\AppData\Roaming\Typora\typora-user-images\1571363939063.png)
+![1571363939063](images/1571363939063.png)
 
 ​	这样，就完成了引入react的相关配置。
 
@@ -344,8 +344,10 @@ npm run server
 
 ​		备注：如果执行脚本后，出现如下错误信息，则表明配置的3030端口被占用，重新更换一个端口即可
 
-​	![1571366029658](C:\Users\snail\AppData\Roaming\Typora\typora-user-images\1571366029658.png)
+​	![1571366029658](images/1571366029658.png)
 
 - 至此，简单的webpack+react开发环境搭建完毕。
 
 ### 三、小结
+
+​		源码详见：https://github.com/Snail-Lu/webpack-react-project.git
