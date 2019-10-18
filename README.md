@@ -30,15 +30,15 @@ mkdir webpack-react-project && cd webpack-react-project
 npm init -y
 ```
 
-​		-y：package.json中的配置选项采用默认值
+  	  	-y：package.json中的配置选项采用默认值
 
-​		或
+  	  	或
 
 ```
 npm init 
 ```
 
-根据提示设置对应配置的取值（回车时默认配置为默认值）
+  	  	根据提示设置对应配置的取值（回车时默认配置为默认值）
 
 - 局部安装webpack到开发环境
 
@@ -47,9 +47,8 @@ npm install --save-dev webpack
 npm install --save-dev webpack-cli
 ```
 
- 		前者是webpack的核心库，后者是分离出来的webpack命令行功能，我们需要使用webpack-cli来进行项目的打包等操作 
-
-​		备注：--save-dev是开发环境所需要的依赖包，--save是上线所需的依赖包
+  	  	前者是webpack的核心库，后者是分离出来的webpack命令行功能，我们需要使用webpack-cli来进行项目的打包等操作 
+  	  	备注：--save-dev是开发环境所需要的依赖包，--save是上线所需的依赖包
 
 - 新建webpack.config.js，配置打包入口及出口
 
@@ -59,7 +58,7 @@ npm install --save-dev webpack-cli
 touch webpack.config.js
 ```
 
-文件内容如下：
+  	  	文件内容如下：
 
 ```javascript
 const path = require('path');
@@ -83,7 +82,7 @@ module.exports = {
 mkdir src && cd src && touch index.js
 ```
 
-​	index.js内容如下：
+  	  	index.js内容如下：
 
 ```javascript
 alert('hello world!')
@@ -104,11 +103,11 @@ alert('hello world!')
 npm run build
 ```
 
-​	此时会看到以下内容，表示构建成功
+  	  	此时会看到以下内容，表示构建成功
 
 ![QQ图片20191017145325](C:\Users\snail\Desktop\QQ图片20191017145325.png)
 
-​	同时，此时可以看到，在根目录下生成了dist目录，dist目录下有编译输出的bundle.js文件
+  	  	同时，此时可以看到，在根目录下生成了dist目录，dist目录下有编译输出的bundle.js文件
 
 ```javascript
 --webpack-react-project
@@ -143,7 +142,7 @@ npm run build
 
 - 使用浏览器打开index.html文件，窗口弹出"hello world"
 
-  ![1571311692727](images/1571311692727.png)
+![1571311692727](images/1571311692727.png)
 
   
 
@@ -161,13 +160,13 @@ npm install react react-dom --save
 npm install babel-core babel-loader babel-preset-env babel-preset-react --save
 ```
 
-​		**babel-core:** 核心包，babel-loader的核心依赖
+  	  	**babel-core:** 核心包，babel-loader的核心依赖
 
-​		**babel-loader:** babel加载器
+  	  	**babel-loader:** babel加载器
 
-​		**babel-preset-env:** 对ES2015及更高版本进行转换，如果仅对ES2015转换，可以使用babel-preset-es2015
+  	  	**babel-preset-env:** 对ES2015及更高版本进行转换，如果仅对ES2015转换，可以使用babel-preset-es2015
 
-​		**babel-preset-react:** 将jsx语法转换为js
+  	  	**babel-preset-react:** 将jsx语法转换为js
 
 - 在根目录下创建babel配置文件.babelrc (注意：文件名是.babelrc，.不能缺少)
 
@@ -245,15 +244,15 @@ ReactDOM.render(
 npm run build
 ```
 
-​		显示编译失败，报错如下
+  	  	显示编译失败，报错如下
 
 ![1571314657934](images/1571314657934.png)
 
-​		根据提示信息，可以看出出错是由于babel-loader版本和babel-core版本不兼容造成的，通过查看package.json文件，可以看到我们当前安装的这两个依赖包的版本。
+  	  	根据提示信息，可以看出出错是由于babel-loader版本和babel-core版本不兼容造成的，通过查看package.json文件，可以看到我们当前安装的这两个依赖包的版本。
 
 ![1571314865713](images/1571314865713.png)
 
-​		这个问题可以通过提升babel-core版本至7.x或者降低babel-loader版本至7.x来解决。这里我采用了降低babel-loader版本。
+  	  	这个问题可以通过提升babel-core版本至7.x或者降低babel-loader版本至7.x来解决。这里我采用了降低babel-loader版本。
 
 - 安装7.x版本的babel-loader
 
@@ -268,7 +267,7 @@ npm install babel-loader@7 --save
 
 ![1571315728704](images/1571315728704.png)
 
-​		编译提示信息有个警告，建议我们配置一下开发模式，对webpack.config.js文件进行如下调整：
+  	  	编译提示信息有个警告，建议我们配置一下开发模式，对webpack.config.js文件进行如下调整：
 
 ```
 const path = require('path');
@@ -301,13 +300,13 @@ module.exports = {
 
 ![1571363939063](images/1571363939063.png)
 
-​	这样，就完成了引入react的相关配置。
+  	  	这样，就完成了引入react的相关配置。
 
 #### 3.配置webpack-dev-serve
 
-​	 按照前面步骤构建的项目，每次修改后都要手动编译及手动刷新index.html，才能看到修改后的页面效果，开发效率较低。为此，可以使用webpack-dev-server来解决这个问题。
+  	  	按照前面步骤构建的项目，每次修改后都要手动编译及手动刷新index.html，才能看到修改后的页面效果，开发效率较低。为此，可以使用webpack-dev-server来解决这个问题。
 
-​	webpack-dev-server是一个提供实时重加载功能的开发服务器，可以为开发环境下的项目提供自动刷新和Hot Module  Replacement（模块热替换： 在应用程序运行过程中替换、添加或删除[模块](https://www.webpackjs.com/concepts/modules/)，而无需重新加载整个页面 ）。
+  	  	webpack-dev-server是一个提供实时重加载功能的开发服务器，可以为开发环境下的项目提供自动刷新和Hot Module  Replacement（模块热替换： 在应用程序运行过程中替换、添加或删除[模块](https://www.webpackjs.com/concepts/modules/)，而无需重新加载整个页面 ）。
 
 - 安装webpack-dev-server
 
@@ -340,14 +339,14 @@ npm install webpack-dev-server --save-dev
 npm run server
 ```
 
-​		编译成功后，会自动打开浏览器，后面每次更改项目后，webpack都会自动编译和刷新
+  	  	编译成功后，会自动打开浏览器，后面每次更改项目后，webpack都会自动编译和刷新
 
-​		备注：如果执行脚本后，出现如下错误信息，则表明配置的3030端口被占用，重新更换一个端口即可
+  	  	备注：如果执行脚本后，出现如下错误信息，则表明配置的3030端口被占用，重新更换一个端口即可
 
-​	![1571366029658](images/1571366029658.png)
+​![1571366029658](images/1571366029658.png)
 
 - 至此，简单的webpack+react开发环境搭建完毕。
 
 ### 三、小结
 
-​		源码详见：https://github.com/Snail-Lu/webpack-react-project.git
+  	  	源码详见：https://github.com/Snail-Lu/webpack-react-project.git
